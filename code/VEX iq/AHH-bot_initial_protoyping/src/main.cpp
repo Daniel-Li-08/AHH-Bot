@@ -14,6 +14,9 @@ using namespace vex;
 vex::brain       Brain;
 
 // define your global instances of motors and other devices here
+motor motor1 = motor(PORT1, false);
+motor motor2 = motor(PORT2, false);
+motor_group both_motors = motor_group(motor1, motor2);
 
 
 int main() {
@@ -21,7 +24,7 @@ int main() {
     Brain.Screen.printAt( 2, 30, "Hello IQ2" );
    
     while(1) {
-        
+        both_motors.spin(forward, 100, percent);
         // Allow other tasks to run
         this_thread::sleep_for(10);
     }
